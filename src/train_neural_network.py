@@ -7,12 +7,12 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping
 import os
 
-os.makedirs('models', exist_ok=True)
+os.makedirs('../models', exist_ok=True)
 
-X_train = pd.read_csv('data/processed/X_train.csv')
-X_test = pd.read_csv('data/processed/X_test.csv')
-y_train = pd.read_csv('data/processed/y_train.csv')
-y_test = pd.read_csv('data/processed/y_test.csv')
+X_train = pd.read_csv('../data/processed/X_train.csv')
+X_test = pd.read_csv('../data/processed/X_test.csv')
+y_train = pd.read_csv('../data/processed/y_train.csv')
+y_test = pd.read_csv('../data/processed/y_test.csv')
 
 model = Sequential([
     Input(shape=(X_train.shape[1],)),
