@@ -12,16 +12,16 @@ plt.rcParams['axes.titlesize'] = 9
 plt.rcParams['axes.labelsize'] = 8
 
 # создание папки для графиков
-os.makedirs('plots/evaluation', exist_ok=True)
+os.makedirs('../plots/evaluation', exist_ok=True)
 
 # загрузка тестовых данных
-X_test = pd.read_csv('data/processed/X_test.csv')
-y_test = pd.read_csv('data/processed/y_test.csv')
+X_test = pd.read_csv('../data/processed/X_test.csv')
+y_test = pd.read_csv('../data/processed/y_test.csv')
 
 # загрузка обученных моделей
-lr = joblib.load('models/linear_regression_model.pkl')
-rf = joblib.load('models/random_forest_model.pkl')
-xgb = joblib.load('models/xgboost_model.pkl')
+lr = joblib.load('../models/linear_regression_model.pkl')
+rf = joblib.load('../models/random_forest_model.pkl')
+xgb = joblib.load('../models/xgboost_model.pkl')
 nn = load_model('models/neural_network_model.h5')
 
 # получение предсказаний
@@ -144,7 +144,7 @@ for name, pred in zip(models, predictions):
     plt.show()
 
 # важность признаков для XGBoost
-X_train = pd.read_csv('data/processed/X_train.csv')
+X_train = pd.read_csv('../data/processed/X_train.csv')
 feature_names = X_train.columns
 importance = xgb.feature_importances_
 imp_df = pd.DataFrame({'Признак': feature_names, 'Важность': importance}).sort_values('Важность', ascending=False)
