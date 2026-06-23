@@ -5,11 +5,14 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Input
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping
+import os
 
-X_train = pd.read_csv('X_train.csv')
-X_test = pd.read_csv('X_test.csv')
-y_train = pd.read_csv('y_train.csv')
-y_test = pd.read_csv('y_test.csv')
+os.makedirs('models', exist_ok=True)
+
+X_train = pd.read_csv('data/processed/X_train.csv')
+X_test = pd.read_csv('data/processed/X_test.csv')
+y_train = pd.read_csv('data/processed/y_train.csv')
+y_test = pd.read_csv('data/processed/y_test.csv')
 
 model = Sequential([
     Input(shape=(X_train.shape[1],)),
@@ -41,15 +44,12 @@ history = model.fit(
     verbose=1
 )
 
-model.save('neural_network_model.h5')
-print('модель сохранена: neural_network_model.h5')
+model.save('models/neural_network_model.h5')
+print('модель сохранена: models/neural_network_model.h5')
 
 y_pred = model.predict(X_test)
 y_pred_dep = y_pred[:, 0]
 y_pred_anx = y_pred[:, 1]
 
-print('=' * 50)
-print('НЕЙРОННАЯ СЕТЬ')
-print('=' * 50)
 print(f'депрессия: MSE={mean_squared_error(y_test["depression_probability"], y_pred_dep):.4f}, MAE={mean_absolute_error(y_test["depression_probability"], y_pred_dep):.4f}, R²={r2_score(y_test["depression_probability"], y_pred_dep):.4f}')
 print(f'тревожность: MSE={mean_squared_error(y_test["anxiety_probability"], y_pred_anx):.4f}, MAE={mean_absolute_error(y_test["anxiety_probability"], y_pred_anx):.4f}, R²={r2_score(y_test["anxiety_probability"], y_pred_anx):.4f}')
