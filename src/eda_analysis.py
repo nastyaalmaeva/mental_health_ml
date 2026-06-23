@@ -10,7 +10,7 @@ plt.rcParams['axes.titlesize'] = 9
 plt.rcParams['axes.labelsize'] = 8
 
 # загрузка данных
-df = pd.read_csv('data\raw\mental_health.csv')
+df = pd.read_csv('..\data\raw\mental_health.csv')
 
 # первичная информация о датасете
 print('размер:', df.shape)
