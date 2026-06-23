@@ -5,12 +5,12 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import joblib
 import os
 
-os.makedirs('models', exist_ok=True)
+os.makedirs('../models', exist_ok=True)
 
-X_train = pd.read_csv('data/processed/X_train.csv')
-X_test = pd.read_csv('data/processed/X_test.csv')
-y_train = pd.read_csv('data/processed/y_train.csv')
-y_test = pd.read_csv('data/processed/y_test.csv')
+X_train = pd.read_csv('../data/processed/X_train.csv')
+X_test = pd.read_csv('../data/processed/X_test.csv')
+y_train = pd.read_csv('../data/processed/y_train.csv')
+y_test = pd.read_csv('../data/processed/y_test.csv')
 
 model = RandomForestRegressor(
     n_estimators=100,
@@ -21,7 +21,7 @@ model = RandomForestRegressor(
 )
 model.fit(X_train, y_train)
 
-joblib.dump(model, 'models/random_forest_model.pkl')
+joblib.dump(model, '../models/random_forest_model.pkl')
 print('модель сохранена: models/random_forest_model.pkl')
 
 y_pred = model.predict(X_test)
