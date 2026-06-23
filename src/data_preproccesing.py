@@ -5,10 +5,10 @@ from sklearn.model_selection import train_test_split
 import os
 
 # создаём папки, если их нет
-os.makedirs('data/processed', exist_ok=True)
+os.makedirs('../data/processed', exist_ok=True)
 
 # загрузка данных из папки data/raw
-df = pd.read_csv('data/raw/mental_health.csv')
+df = pd.read_csv('../data/raw/mental_health.csv')
 
 # оставляем только мужской и женский пол
 df = df[df['gender'].isin(['Male', 'Female'])]
@@ -43,10 +43,10 @@ X[numeric_cols] = scaler.fit_transform(X[numeric_cols])
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # сохранение выборок в data/processed/
-X_train.to_csv('data/processed/X_train.csv', index=False)
-X_test.to_csv('data/processed/X_test.csv', index=False)
-y_train.to_csv('data/processed/y_train.csv', index=False)
-y_test.to_csv('data/processed/y_test.csv', index=False)
+X_train.to_csv('../data/processed/X_train.csv', index=False)
+X_test.to_csv('../data/processed/X_test.csv', index=False)
+y_train.to_csv('../data/processed/y_train.csv', index=False)
+y_test.to_csv('../data/processed/y_test.csv', index=False)
 
 print(f'размеры выборок:')
 print(f'X_train: {X_train.shape}, y_train: {y_train.shape}')
